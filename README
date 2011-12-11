@@ -1,0 +1,58 @@
+My Entry in the 2011 Orbitz Coding Challenge
+
+I was notified on December 2, 2011 I was selected as one of the winners.
+The text of my entry is below and my solution files are also included.
+
+Directory structure:
+README (this file)
+Coding Challenge 2011.pdf (directions supplied by Orbitz)
+| src (all source files)
+| data (Orbitz supplied encoded data file and my decoded solution file)
+
+All of my code in the src directory is released under the MIT License.
+
+
+------------------------------------------------------------------------
+Original README from Entry
+------------------------------------------------------------------------
+
+Name: Brian T Bailey
+Email: bbailey4 [at] hawk [dot] iit [dot] edu
+       briantbailey [at] gmail [dot] com
+Phone: ***-***-****
+School: IIT
+
+Solution Overview:
+My solution was programed in Ruby. For my solution I created a class
+file with two methods located in the KeypadDecoder.rb source file. The
+file runme.rb is the main application that needs to be run. In that
+file the data files are opened, a new instance of KeypadDecoder is
+created and the files are passed to the decode_file method of the
+instance.
+
+The first method is decode_line. This method takes an
+encoded string as an argument and returns the decoded string. This is
+the main logic of the class. In this method I define a hash of arrays
+to hold the letter values of each number key. Then I loop through each
+character of the string and check the character against a case
+statement that has all the possible values. At the end of the
+character loop before it repeats I store the current character in the
+previous_char variable so I can compare it for repeats. The first when
+block of the case statement checks for a match from 2-9, the numbers
+that would hold a letter. If the current character doesn't match the
+previous character it is added to the output_string. If it is a match,
+a char_count variable is incremented and the last character is removed
+from the output_string because it was prematurely added. There is one
+more test to see if the key was pressed more times than there are
+letters on it. If it was, it needs to wrap around so I took the modulus
+of the count by the length of the array - 1. That remainder tells me
+how far past an even repeat the array should be indexed. The rest of
+the when clauses take care of 0, #, space, 1 & *. Finally the
+output_string is returned.
+
+The other method is the decode_file. It takes in as arguments the file 
+variables for the input and output and writes the decoded file. First 
+it reads the first line and converts it to an integer to determine the 
+total number of cases. Then it reads in the rest of the lines into an 
+array. Finally it loops through the array and uses the decode_line 
+method decode the text, format the results and write them to the file.
